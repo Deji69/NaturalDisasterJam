@@ -1,9 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
 
-[node name="DebrisItem" type="Node" index="0"]
+[ext_resource path="res://DraggableBlock.tscn" type="PackedScene" id=1]
 
-[node name="Node2D" type="Node2D" parent="." index="0"]
+[node name="DebrisItem" type="Node2D"]
 
-_sections_unfolded = [ "Pause" ]
+[node name="DraggableBlock" parent="." index="0" instance=ExtResource( 1 )]
 
 

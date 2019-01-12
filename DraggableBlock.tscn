@@ -1,14 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://DraggableBlock.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
-
-[node name="DraggableBlock" type="RigidBody2D" index="0"]
+[node name="DraggableBlock" type="RigidBody2D"]
 
 input_pickable = true
 collision_layer = 1
@@ -36,15 +30,5 @@ dragging_angular_damp = 0.5
 dragging_acceleration = 1600
 dragging_time = 0.1
 dragging_mass = 0.1
-
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
-show_behind_parent = true
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Visibility" ]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
-shape = SubResource( 1 )
 
 
