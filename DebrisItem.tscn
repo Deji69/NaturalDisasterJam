@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="DebrisItem" type="Node" index="0"]
+
+[node name="Node2D" type="Node2D" parent="." index="0"]
+
+_sections_unfolded = [ "Pause" ]
+
+

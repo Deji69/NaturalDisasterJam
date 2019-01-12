@@ -2,8 +2,9 @@
 
 [ext_resource path="res://Flooding.gd" type="Script" id=1]
 [ext_resource path="res://Rain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=3]
 [ext_resource path="res://DraggableBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SurfaceDebris.gd" type="Script" id=3]
+[ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,17 +18,7 @@ extents = Vector2( 32, 32 )
 
 [node name="World" type="Node"]
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="Ground" type="StaticBody2D" parent="." index="1"]
+[node name="Ground" type="StaticBody2D" parent="." index="0"]
 
 editor/display_folded = true
 position = Vector2( 512, 584 )
@@ -62,7 +53,7 @@ texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
 
-[node name="Flooding" type="Node2D" parent="." index="2"]
+[node name="Flooding" type="Node2D" parent="." index="1"]
 
 z_index = 1
 script = ExtResource( 1 )
@@ -70,23 +61,25 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="Rain" parent="Flooding" index="0" instance=ExtResource( 2 )]
 
-[node name="Water" type="StaticBody2D" parent="Flooding" index="1"]
+[node name="Water" type="Area2D" parent="Flooding" index="1"]
 
 position = Vector2( 512, 848 )
 scale = Vector2( 16, 8 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
 
-[node name="Polygon2D" type="Polygon2D" parent="Flooding/Water" index="0"]
+[node name="SurfaceDebris" type="Node2D" parent="Flooding/Water" index="0"]
+
+position = Vector2( 0, -1.90735e-006 )
+scale = Vector2( 1, 1 )
+script = ExtResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Flooding/Water" index="1"]
 
 polygon = PoolVector2Array( 32, -32, -32, -32, -32, 32, 32, 32 )
 uv = PoolVector2Array(  )
@@ -101,12 +94,12 @@ texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flooding/Water" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flooding/Water" index="2"]
 
 shape = SubResource( 2 )
 _sections_unfolded = [ "Material" ]
 
-[node name="PlayerCharacter" parent="." index="3" instance=ExtResource( 3 )]
+[node name="PlayerCharacter" parent="." index="2" instance=ExtResource( 4 )]
 
 [node name="DraggableBlock" parent="." index="4" instance=ExtResource( 4 )]
 
