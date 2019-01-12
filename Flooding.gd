@@ -1,8 +1,11 @@
 extends Node2D
 
+var riseSpeed = 0.5
+
 func _ready():
-	$Water.scale.y = 0
+	pass
 
 func _process(delta):
-	$Water.scale.y += 0.01
-	$Rain.Extent.y -= 0.01
+	$Water.position.y -= riseSpeed
+	if (riseSpeed < 2):
+		riseSpeed += riseSpeed * 0.001

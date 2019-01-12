@@ -4,12 +4,12 @@
 [ext_resource path="res://Rain.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 70.173, 13 )
+extents = Vector2( 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
@@ -26,56 +26,53 @@ angular_damp = 1.0
 audio_bus_override = false
 audio_bus_name = "Master"
 
-[node name="Flooding" type="Node2D" parent="." index="1"]
+[node name="Ground" type="StaticBody2D" parent="." index="1"]
 
+editor/display_folded = true
+position = Vector2( 512, 584 )
+scale = Vector2( 16, 0.75 )
+z_index = 2
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Z Index" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="0"]
+
+editor/display_folded = true
+shape = SubResource( 3 )
+
+[node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionShape2D" index="0"]
+
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+uv = PoolVector2Array(  )
+color = Color( 0.1875, 0.1875, 0.1875, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="Flooding" type="Node2D" parent="." index="2"]
+
+z_index = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="Rain" parent="Flooding" index="0" instance=ExtResource( 2 )]
 
 [node name="Water" type="StaticBody2D" parent="Flooding" index="1"]
 
-position = Vector2( 512, 576 )
-scale = Vector2( 16, 0.5 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Collision" ]
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flooding/Water" index="0"]
-
-position = Vector2( 0, 4.80001 )
-scale = Vector2( 0.456016, 2.83077 )
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Polygon2D" type="Polygon2D" parent="Flooding/Water" index="1"]
-
-polygon = PoolVector2Array( 32, -32, 32, 32, -32, 32, -32, -32 )
-uv = PoolVector2Array(  )
-color = Color( 0.18988, 0.300676, 0.398438, 0.508274 )
-vertex_colors = PoolColorArray(  )
-offset = Vector2( 0, 0 )
-antialiased = false
-texture = null
-texture_offset = Vector2( 0, 0 )
-texture_scale = Vector2( 1, 1 )
-texture_rotation_degrees = 0.0
-invert_enable = false
-invert_border = 100.0
-
-[node name="PlayerCharacter" parent="." index="2" instance=ExtResource( 3 )]
-
-[node name="Ground" type="StaticBody2D" parent="." index="3"]
-
-position = Vector2( 512, 592 )
-scale = Vector2( 16, 0.5 )
+position = Vector2( 512, 848 )
+scale = Vector2( 16, 8 )
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -84,14 +81,15 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
-[node name="Polygon2D" type="Polygon2D" parent="Ground" index="0"]
+[node name="Polygon2D" type="Polygon2D" parent="Flooding/Water" index="0"]
 
 polygon = PoolVector2Array( 32, -32, -32, -32, -32, 32, 32, 32 )
 uv = PoolVector2Array(  )
-color = Color( 0.671875, 0.671882, 0.671875, 1 )
+color = Color( 0, 0.541176, 0.698039, 0.698039 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false
@@ -102,8 +100,11 @@ texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flooding/Water" index="1"]
 
-shape = SubResource( 1 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Material" ]
+
+[node name="PlayerCharacter" parent="." index="3" instance=ExtResource( 3 )]
 
 
