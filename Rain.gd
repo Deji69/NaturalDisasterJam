@@ -11,7 +11,7 @@ class RainDrop:
 	var state = 0
 	var timer = 0.1
 
-var collision_mask = 0+1+2+4+8
+var collision_mask = 2147483647  #0+1+2+4+8+16+32
 var extents = null
 var drops = []
 var rain_dir = Vector2(0, 2).normalized() * 150
@@ -36,7 +36,7 @@ func _ready():
 	var space_state = get_world_2d().direct_space_state
 	for n in range(ndrops):
 		var d = RainDrop.new()
-		_reset_drop(d, space_state)
+		_reset_drop(d, space_state, true)
 		drops.append(d)
 
 func _physics_process(delta):
@@ -54,10 +54,10 @@ func _drop_fsm(d, delta, space_state):
 		# check collisions
 		var results = space_state.intersect_point(d.pos.position, 32, [], self.collision_mask)
 		if not results.empty():
-			if results[0].collider.get_class() != "Area2D":
-				d.timer = 0.1
-				d.state = 2
-				d.frame = 0
+			#if results[0].collider.get_class() != "Area2D":
+			d.timer = 0.1
+			d.state = 2
+			d.frame = 0
 		# check end of extents
 		if not extents.has_point(d.pos.position):
 			# reset drop
@@ -74,12 +74,21 @@ func _drop_fsm(d, delta, space_state):
 				return
 			d.frame += 1
 
-func _reset_drop(d, space_state):
-	d.pos = Rect2(_get_random_initial_position(space_state), frame_size)
-	d.vel = rand_range(0.8, 1.0)
-	d.state = 1
-	d.frame = 0
-	d.color = Color(1, 1, 1, rand_range(0.1, 0.4))
+func _reset_drop(d, space_state, initial = false):
+	var pos = Vector2()
+	if (initial):
+		pos = _get_random_initial_position(space_state)
+	else:
+		pos = _get_random_reset_position(space_state)
+	if pos:
+		d.pos = Rect2(pos, frame_size)
+		d.vel = rand_range(0.8, 1.0)
+		d.state = 1
+		d.frame = 0
+		d.color = Color(1, 1, 1, rand_range(0.1, 0.4))
+	else:
+		d.state = -1
+		d.color = Color(1, 1, 1, 0)
 
 func _get_random_initial_position(space_state = null):
 	if space_state == null:
@@ -102,10 +111,10 @@ func _get_random_initial_position(space_state = null):
 
 func _get_random_reset_position(space_state):
 	for try in range(1000):
-		var posline = rand_range(0, extents.size.x + extents.size.y)
-		var candidate_pos = Vector2(0, posline)
-		if posline > extents.size.y:
-			candidate_pos = Vector2(posline - extents.size.y, 0)
+		var candidate_pos = extents.position + Vector2(
+			rand_range(0, extents.size.x),
+			0
+		)
 		# check collisions
 		var results = space_state.intersect_point(candidate_pos, 32, [], self.collision_mask)
 		if results.empty():
@@ -114,6 +123,7 @@ func _get_random_reset_position(space_state):
 
 func _draw():
 	for d in drops:
-		var texpos = d.pos
-		texpos.position -= frame_offset + global_position
-		draw_texture_rect_region(raintex, texpos, frame_rects[frames[d.state][d.frame]], d.color)
+		if d.state != -1:
+			var texpos = d.pos
+			texpos.position -= frame_offset + global_position
+			draw_texture_rect_region(raintex, texpos, frame_rects[frames[d.state][d.frame]], d.color)
