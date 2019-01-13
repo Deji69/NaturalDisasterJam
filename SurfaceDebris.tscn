@@ -2,12 +2,9 @@
 
 [ext_resource path="res://SurfaceDebris.gd" type="Script" id=1]
 
-[node name="SurfaceDebris" type="Node2D" index="0"]
+[node name="SurfaceDebris" type="Node"]
 
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="SpawnTimer" type="Timer" parent="." index="0"]
 

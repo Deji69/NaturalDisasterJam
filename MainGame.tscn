@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Flooding.gd" type="Script" id=1]
 [ext_resource path="res://Rain.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SurfaceDebris.gd" type="Script" id=3]
-[ext_resource path="res://DraggableBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SurfaceDebris.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DebrisItemScenes/TestDebrisItem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DebrisItemScenes/TestDebrisItem2.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -13,15 +14,14 @@ extents = Vector2( 32, 32 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
+extents = Vector2( 768, 272 )
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0"]
 
 [node name="Ground" type="StaticBody2D" parent="." index="0"]
 
-editor/display_folded = true
 position = Vector2( 512, 584 )
-scale = Vector2( 16, 0.75 )
+scale = Vector2( 24, 0.75 )
 z_index = 2
 input_pickable = false
 collision_layer = 1
@@ -31,10 +31,12 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 _sections_unfolded = [ "Z Index" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" index="0"]
 
-editor/display_folded = true
 shape = SubResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionShape2D" index="0"]
@@ -57,33 +59,35 @@ invert_border = 100.0
 z_index = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
+screen_level = 0.0
+total_level = 0.0
 
 [node name="Rain" parent="Flooding" index="0" instance=ExtResource( 2 )]
 
-[node name="SurfaceDebris" type="Position2D" parent="Flooding" index="1"]
+_sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
 
-position = Vector2( 512, 480 )
-script = ExtResource( 3 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Water" type="StaticBody2D" parent="Flooding" index="2"]
+[node name="Water" type="Area2D" parent="Flooding" index="1"]
 
 position = Vector2( 512, 848 )
-scale = Vector2( 16, 8 )
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Z Index" ]
+space_override = 3
+gravity_distance_scale = 0.349
+gravity_vec = Vector2( 0, 1 )
+gravity = 0.2
+linear_damp = 100.0
+angular_damp = 30.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index", "collision" ]
 
-[node name="Polygon2D" type="Polygon2D" parent="Flooding/Water" index="0"]
+[node name="SurfaceDebris" parent="Flooding/Water" index="0" instance=ExtResource( 3 )]
 
-polygon = PoolVector2Array( 32, -32, -32, -32, -32, 32, 32, 32 )
+[node name="Polygon2D" type="Polygon2D" parent="Flooding/Water" index="1"]
+
+position = Vector2( 0, 80 )
+polygon = PoolVector2Array( 768, -352, -768, -352, -768, 192, 768, 192 )
 uv = PoolVector2Array(  )
-color = Color( 0, 0.541176, 0.698039, 0.698039 )
+color = Color( 0, 0.541176, 0.698039, 0.627451 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false
@@ -95,35 +99,34 @@ invert_enable = false
 invert_border = 100.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flooding/Water" index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flooding/Water" index="2"]
 
 shape = SubResource( 2 )
+one_way_collision = true
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="PlayerCharacter" parent="." index="2" instance=ExtResource( 4 )]
-
-[node name="DraggableBlock" parent="." index="3" instance=ExtResource( 4 )]
+[node name="DebrisItem" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 416.389, 527.426 )
-interactable = false
+_sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="DraggableBlock2" parent="." index="4" instance=ExtResource( 4 )]
+[node name="DebrisItem2" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 934.562, 479.31 )
 
-[node name="DraggableBlock3" parent="." index="5" instance=ExtResource( 4 )]
+[node name="DebrisItem3" parent="." index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 64.7716, 457.103 )
 
-[node name="DraggableBlock4" parent="." index="6" instance=ExtResource( 4 )]
+[node name="DebrisItem4" parent="." index="5" instance=ExtResource( 4 )]
 
 position = Vector2( 681.027, 460.804 )
 
-[node name="DraggableBlock5" parent="." index="7" instance=ExtResource( 4 )]
+[node name="DebrisItem5" parent="." index="6" instance=ExtResource( 5 )]
 
 position = Vector2( 203.568, 460.804 )
 
-[node name="DraggableBlock6" parent="." index="8" instance=ExtResource( 4 )]
+[node name="DebrisItem6" parent="." index="7" instance=ExtResource( 5 )]
 
 position = Vector2( 549.634, 466.356 )
 

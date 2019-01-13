@@ -4,6 +4,10 @@
 
 [node name="DebrisItem" type="Node2D"]
 
+_sections_unfolded = [ "Transform" ]
+
 [node name="DraggableBlock" parent="." index="0" instance=ExtResource( 1 )]
+
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable" ]
 
 

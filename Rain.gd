@@ -11,7 +11,7 @@ class RainDrop:
 	var state = 0
 	var timer = 0.1
 
-var collision_mask = 0+1+2+4+8
+var collision_mask = 2147483647  #0+1+2+4+8+16+32
 var extents = null
 var drops = []
 var rain_dir = Vector2(0, 2).normalized() * 150
