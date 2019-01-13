@@ -70,7 +70,6 @@ _sections_unfolded = [ "Pause", "Transform", "Visibility", "Z Index" ]
 
 position = Vector2( 512, 848 )
 input_pickable = false
-space_override = 3
 gravity_distance_scale = 0.349
 gravity_vec = Vector2( 0, 1 )
 gravity = 0.2

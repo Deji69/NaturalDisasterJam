@@ -54,10 +54,10 @@ func _drop_fsm(d, delta, space_state):
 		# check collisions
 		var results = space_state.intersect_point(d.pos.position, 32, [], self.collision_mask)
 		if not results.empty():
-			if results[0].collider.get_class() != "Area2D":
-				d.timer = 0.1
-				d.state = 2
-				d.frame = 0
+			#if results[0].collider.get_class() != "Area2D":
+			d.timer = 0.1
+			d.state = 2
+			d.frame = 0
 		# check end of extents
 		if not extents.has_point(d.pos.position):
 			# reset drop

@@ -17,19 +17,18 @@ func _process(delta):
 		screen_level += rise_speed
 		if (rise_speed < 2):
 			rise_speed += rise_speed * 0.001
-	#for obj in objects:
-		#obj.
+	for obj in objects:
+		if obj is RigidBody2D:
+			obj.apply_impulse(Vector2(0, 0), Vector2(0, -20) * delta)
 
 var objects = []
 
 func _on_water_entered(body):
-	print(body.get_class())
 	objects.append(body)
 	if body.is_class("DebrisItem"):
 		body.enter_water()
 
 func _on_water_exited(body):
-	print(body.get_class())
 	var idx = objects.find(body)
 	if idx != -1:
 		objects.remove(idx)
