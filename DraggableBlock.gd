@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+#Godot does not expose a way to know the combined extent of colliders
+# but we need to know it for the bouyance
+export var approx_y_extent = 30.0
 export var interactable = true
 export var dragging_linear_damp = -1.0
 export var dragging_angular_damp = -1.0
@@ -13,8 +16,12 @@ onready var original_linear_damp = linear_damp
 onready var original_angular_damp = angular_damp
 onready var original_mass = mass
 
+var horizontal_movement = Vector2.ZERO
+var horizontal_force = 5
+var in_water = false
+
 func _ready():
-	set_physics_process(false)
+	set_physics_process(true)
 
 # Handle mouse clicks
 func _input_event(viewport, event, shape_idx):
@@ -40,11 +47,11 @@ func set_dragging(state):
 		linear_damp = original_linear_damp
 		angular_damp = original_linear_damp
 		mass = original_mass
-		for body in get_colliding_bodies():
-			if body.get("interactable") == false:
-				interactable = false
-				input_pickable = false
-	set_physics_process(dragging)
+#		for body in get_colliding_bodies():
+#			if body.get("interactable") == false:
+#				interactable = false
+#				input_pickable = false
+#	set_physics_process(dragging)
 
 # Drag
 func _physics_process(delta):
@@ -54,3 +61,6 @@ func _physics_process(delta):
 		
 		var target_velocity = (to_point - from_point) / dragging_time
 		apply_impulse(from_point - global_position, (target_velocity - linear_velocity).clamped(delta * dragging_acceleration) * mass)
+		return
+	if get_colliding_bodies().size() == 0 and in_water:
+		apply_impulse(Vector2.ZERO, horizontal_movement*horizontal_force)
