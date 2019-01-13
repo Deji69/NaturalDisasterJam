@@ -2,67 +2,43 @@
 # Heavier debris should sink to the bottom
 extends Node
 
-const max_debris_items = 4
-var debris_scenes = [
-	preload("res://DebrisItemScenes/TestDebrisItem.tscn"),
-	preload("res://DebrisItemScenes/TestDebrisItem2.tscn"),
-]
-var debris_items = []
-var direction = 0		# 0 left, 1 right
+export var max_debris_items = 4
+export(Array, NodePath) var spawn_positions_paths
+var spawn_positions = []
+# Object under which the debris will be spawned
+# They can't be children of the water otherwise they will move upwards
+# with the water when they are set as kinematic
+export(NodePath) var spawn_parent_path
+onready var spawn_parent = get_node(spawn_parent_path)
+var _current_debris_number = 0
 
-class DebrisItem:
-	var inst
-	var dir
-	var bob_dir = 0
-	var bob_fac = 0
-	var speed = rand_range(1, 2)
+var debris_scenes = [
+	preload("res://DebrisItemScenes/GreenCar.tscn"),
+	preload("res://DebrisItemScenes/RedCar.tscn"),
+]
 
 func _ready():
 	$SpawnTimer.wait_time = 4
 	$SpawnTimer.start()
+	for p in spawn_positions_paths:
+		spawn_positions.append(get_node(p))
 
-func _physics_process(delta):
-	for item in debris_items:
-		item.inst.position.y = get_parent().position.y - 270 + (item.bob_fac * 8)
-		if item.bob_fac >= 1:
-			item.bob_dir = 1
-		else:
-			if item.bob_fac <= 0:
-				item.bob_dir = 0
-		if item.bob_dir == 1:
-			item.bob_fac += 0.1 * (delta / 100)
-		else:
-			item.bob_fac -= 0.1 * (delta / 100)
-		var block = item.inst.get_node("DraggableBlock");
-		if item.dir == 0:
-			block.set_axis_velocity(Vector2(-10.5 * item.speed, 0))
-		else:
-			block.set_axis_velocity(Vector2(10.5 * item.speed, 0))
-		if item.inst.position.x < -40:
-			item.inst.queue_free()
-			debris_items.erase(item)
-		else: if item.inst.position.x > 1060:
-			item.inst.queue_free()
-			debris_items.erase(item)
 
 func _on_SpawnTimer_timeout():
-	if debris_items.size() < max_debris_items:
+	if _current_debris_number < max_debris_items:
 		_spawn_debris_item()
 	
 func _spawn_debris_item():
-	var item = DebrisItem.new()
-	item.inst = debris_scenes[randi() % debris_scenes.size()].instance()
-	item.dir = randi() % 2
-	
-	debris_items.push_back(item)
-	add_child(item.inst)
-	
-	#item.inst.get_node("DraggableBlock").set_mode(RigidBody2D.MODE_KINEMATIC)
-	
-	item.inst.position = get_parent().position
-	item.inst.position.y -= 270
-	
-	if item.dir == 0:
-		item.inst.position.x = 1054
-	else:
-		item.inst.position.x = -32
+	var item = debris_scenes[randi() % debris_scenes.size()].instance()
+	var spawn_position = spawn_positions[randi() % spawn_positions.size()]
+	var float_direction = spawn_position.direction
+	item.horizontal_movement = float_direction
+	_current_debris_number += 1
+	spawn_parent.add_child(item)
+	item.global_position = spawn_position.global_position
+	#Binding in also who is being destroyed cuz why not
+	item.connect("tree_exiting", self, "_on_debris_destroyed", [item])
+
+
+func _on_debris_destroyed(_who):
+	_current_debris_number -= 1

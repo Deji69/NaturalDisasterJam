@@ -19,6 +19,10 @@ config/name="Natural Disaster Jam"
 run/main_scene="res://Scenes/GameState.tscn"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_physics/layer_2="Debris"
+
 [physics]
 
 common/physics_fps=40
