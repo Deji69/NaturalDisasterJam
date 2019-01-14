@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 61.1113, 28.5287 )
+extents = Vector2( 61, 29 )
 
 [node name="DebrisItem" instance=ExtResource( 1 )]
 
@@ -13,11 +13,12 @@ extents = Vector2( 61.1113, 28.5287 )
 
 mass = 0.25
 _sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
-part_of_tower = false
+dragging_mass = 0.01
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableBlock" index="0"]
 
 shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="Polygon2D" type="Polygon2D" parent="DraggableBlock" index="1"]
 
