@@ -59,13 +59,12 @@ func _physics_process(delta):
 
 
 func _on_DraggableBlock_body_entered(body):
-	if not part_of_tower:
-		if body.name == "Platform":
-			connected_tower_body = body
-			part_of_tower = true
-		elif body.name == "DraggableBlock" and body.part_of_tower:
-			connected_tower_body = body
-			part_of_tower = true
+	if body.name == "Platform":
+		connected_tower_body = body
+		part_of_tower = true
+	elif body.name == "DraggableBlock" and body.part_of_tower:
+		connected_tower_body = body
+		part_of_tower = true
 
 func _on_DraggableBlock_body_exited(body):
 	if part_of_tower:
