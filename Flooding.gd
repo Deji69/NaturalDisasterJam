@@ -4,7 +4,7 @@ extends Node2D
 export var screen_level = 0.0
 # the water height for calculating the score
 export var total_level = 0.0
-var rise_speed = 2.5
+var rise_speed = 0.1
 
 func _ready():
 	$Water.connect('body_entered', self, '_on_water_entered') 

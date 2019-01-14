@@ -6,6 +6,7 @@ const max_debris_items = 4
 var debris_scenes = [
 	preload("res://DebrisItemScenes/TestDebrisItem.tscn"),
 	preload("res://DebrisItemScenes/TestDebrisItem2.tscn"),
+	preload("res://DebrisItemScenes/TestDebrisItem3.tscn"),
 ]
 var debris_items = []
 var direction = 0		# 0 left, 1 right
@@ -19,7 +20,7 @@ class DebrisItem:
 
 func _ready():
 	$SpawnTimer.wait_time = 4
-	$SpawnTimer.start()
+	$SpawnTimer.stop()   # temporarily disabled
 
 func _physics_process(delta):
 	for item in debris_items:
