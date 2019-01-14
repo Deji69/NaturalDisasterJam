@@ -1,12 +1,14 @@
 extends RigidBody2D
 
 export var interactable = true
+export var part_of_tower = false
 export var dragging_linear_damp = -1.0
 export var dragging_angular_damp = -1.0
 export var dragging_acceleration = 20
 export var dragging_time = 0.1
 export var dragging_mass = 0.1
 
+var connected_tower_body
 var dragging = false
 var drag_point = Vector2()
 onready var original_linear_damp = linear_damp
@@ -54,3 +56,19 @@ func _physics_process(delta):
 		
 		var target_velocity = (to_point - from_point) / dragging_time
 		apply_impulse(from_point - global_position, (target_velocity - linear_velocity).clamped(delta * dragging_acceleration) * mass)
+
+
+func _on_DraggableBlock_body_entered(body):
+	if not part_of_tower:
+		if body.name == "Platform":
+			connected_tower_body = body
+			part_of_tower = true
+		elif body.name == "DraggableBlock" and body.part_of_tower:
+			connected_tower_body = body
+			part_of_tower = true
+
+func _on_DraggableBlock_body_exited(body):
+	if part_of_tower:
+		if body == connected_tower_body:
+			connected_tower_body = null
+			part_of_tower = false

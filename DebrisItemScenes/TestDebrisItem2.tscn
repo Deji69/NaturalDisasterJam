@@ -12,6 +12,7 @@ extents = Vector2( 32, 32 )
 [node name="DraggableBlock" parent="." index="0"]
 
 mass = 0.25
+part_of_tower = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DraggableBlock" index="0"]
 

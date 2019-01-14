@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Flooding.gd" type="Script" id=1]
 [ext_resource path="res://Rain.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://DebrisItemScenes/TestDebrisItem2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://DebrisItemScenes/TestDebrisItem3.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Platform.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Platform.gd" type="Script" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -18,7 +19,7 @@ extents = Vector2( 32, 32 )
 custom_solver_bias = 0.0
 extents = Vector2( 768, 272 )
 
-[node name="World" type="Node" index="0"]
+[node name="World" type="Node"]
 
 [node name="Ground" type="StaticBody2D" parent="." index="0"]
 
@@ -138,5 +139,6 @@ position = Vector2( 512, 384 )
 [node name="Platform" parent="." index="9" instance=ExtResource( 7 )]
 
 position = Vector2( 512, 528.245 )
+script = ExtResource( 8 )
 
 
