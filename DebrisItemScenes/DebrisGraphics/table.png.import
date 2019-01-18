@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RedCar.png-58a5fc0afdc07e818810e4a808cce06f.stex"
+path="res://.import/table.png-1567b942f1fc48e0fbf50efafd676545.stex"
 
 [deps]
 
-source_file="res://DebrisItemScenes/DebrisGraphics/RedCar.png"
-dest_files=[ "res://.import/RedCar.png-58a5fc0afdc07e818810e4a808cce06f.stex" ]
+source_file="res://DebrisItemScenes/DebrisGraphics/table.png"
+dest_files=[ "res://.import/table.png-1567b942f1fc48e0fbf50efafd676545.stex" ]
 
 [params]
 

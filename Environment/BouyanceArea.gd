@@ -1,7 +1,7 @@
 extends Area2D
 
 var height: float
-export(float) var max_acceleration = -9.8
+export(float) var max_acceleration = -5
 
 
 func _ready():
@@ -30,11 +30,14 @@ func _physics_process(delta):
 		if not b is RigidBody2D:
 			continue
 		var factor = get_height_percentage(b.global_position)
+		var density = 1.0
+		if b.get("density") != null:
+			density = 1.0/max(0.0001, b.density)
 		b.apply_impulse(
 			Vector2.ZERO,
 			Vector2(
 				0,
-				max_acceleration * b.mass * factor
+				max_acceleration * b.mass * factor * density
 				)
 			)
 

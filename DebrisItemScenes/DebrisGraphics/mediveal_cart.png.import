@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/PinkCar.png-e00c40c4ca9dfb5803240dc154baf168.stex"
+path="res://.import/mediveal_cart.png-5fe8259fd3f832e1cbb815700339275b.stex"
 
 [deps]
 
-source_file="res://DebrisItemScenes/DebrisGraphics/PinkCar.png"
-dest_files=[ "res://.import/PinkCar.png-e00c40c4ca9dfb5803240dc154baf168.stex" ]
+source_file="res://DebrisItemScenes/DebrisGraphics/mediveal_cart.png"
+dest_files=[ "res://.import/mediveal_cart.png-5fe8259fd3f832e1cbb815700339275b.stex" ]
 
 [params]
 

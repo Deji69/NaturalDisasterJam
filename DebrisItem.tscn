@@ -13,3 +13,7 @@ dragging_linear_damp = 0.3
 dragging_angular_damp = 0.5
 dragging_acceleration = 1600
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+

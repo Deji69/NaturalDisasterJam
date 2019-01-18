@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DebrisItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DebrisItemScenes/DebrisGraphics/shield.png" type="Texture" id=2]
+
+[node name="DraggableBlock" instance=ExtResource( 1 )]
+position = Vector2( 0.950012, -2.85001 )
+mass = 10.0
+density = 2.0
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+polygon = PoolVector2Array( 77.8013, -3.14911, 88.2514, -119.999, -97.9491, -121.899, -90.3491, -4.09912, -52.349, 86.1511, -3.89886, 129.851, 55.9513, 69.0511 )
+

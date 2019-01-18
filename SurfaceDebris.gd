@@ -13,8 +13,13 @@ onready var spawn_parent = get_node(spawn_parent_path)
 var _current_debris_number = 0
 
 var debris_scenes = [
-	preload("res://DebrisItemScenes/GreenCar.tscn"),
-	preload("res://DebrisItemScenes/RedCar.tscn"),
+	preload("res://DebrisItemScenes/Dome.tscn"),
+	preload("res://DebrisItemScenes/RoofTri.tscn"),
+	preload("res://DebrisItemScenes/Table.tscn"),
+	preload("res://DebrisItemScenes/Shield.tscn"),
+	preload("res://DebrisItemScenes/Roof.tscn"),
+	preload("res://DebrisItemScenes/Door.tscn"),
+	preload("res://DebrisItemScenes/Cart.tscn")
 ]
 
 func _ready():
@@ -32,7 +37,7 @@ func _spawn_debris_item():
 	var item = debris_scenes[randi() % debris_scenes.size()].instance()
 	var spawn_position = spawn_positions[randi() % spawn_positions.size()]
 	var float_direction = spawn_position.direction
-	item.horizontal_movement = float_direction
+	item.horizontal_movement = Vector2(float_direction.x, item.horizontal_movement.y)
 	_current_debris_number += 1
 	spawn_parent.add_child(item)
 	item.global_position = spawn_position.global_position

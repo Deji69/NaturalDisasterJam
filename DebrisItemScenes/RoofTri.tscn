@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://DebrisItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DebrisItemScenes/DebrisGraphics/roof2.png" type="Texture" id=2]
+
+[node name="DraggableBlock" index="0" instance=ExtResource( 1 )]
+mass = 15.0
+density = 4.0
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+polygon = PoolVector2Array( 62.3412, 27.3632, 3.29666, -33.6716, -65.0358, 28.0267 )
+

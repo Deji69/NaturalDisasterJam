@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GreenCar.png-01770782f0098225c3c08b7a360ad99c.stex"
+path="res://.import/roofTile.png-8f5433893d760e58d59a164c53aea23f.stex"
 
 [deps]
 
-source_file="res://DebrisItemScenes/DebrisGraphics/GreenCar.png"
-dest_files=[ "res://.import/GreenCar.png-01770782f0098225c3c08b7a360ad99c.stex" ]
+source_file="res://DebrisItemScenes/DebrisGraphics/roofTile.png"
+dest_files=[ "res://.import/roofTile.png-8f5433893d760e58d59a164c53aea23f.stex" ]
 
 [params]
 

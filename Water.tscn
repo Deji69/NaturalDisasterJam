@@ -11,7 +11,7 @@ extents = Vector2( 913.443, 272 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
-extents = Vector2( 913.72, 45.2042 )
+extents = Vector2( 913.72, 137.783 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -19,7 +19,7 @@ extents = Vector2( 915.391, 183.83 )
 
 [sub_resource type="RectangleShape2D" id=4]
 
-extents = Vector2( 919.287, 70 )
+extents = Vector2( 919.287, 127.74 )
 
 [node name="Water" type="Area2D"]
 position = Vector2( 512, 848 )
@@ -43,13 +43,13 @@ shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="KinematicArea" type="Area2D" parent="."]
-position = Vector2( 1.67017, -81.2981 )
+position = Vector2( -5.01061, 115.784 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicArea"]
 shape = SubResource( 2 )
 
 [node name="KillArea" type="Area2D" parent="."]
-position = Vector2( 0, 147.518 )
+position = Vector2( -1.67028, 434.79 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 shape = SubResource( 3 )
@@ -71,7 +71,7 @@ position = Vector2( 0, -88 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BouyanceArea"]
-position = Vector2( 0, -111.903 )
+position = Vector2( -2, -60 )
 shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

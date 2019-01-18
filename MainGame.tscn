@@ -1,44 +1,50 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/MainGame.gd" type="Script" id=1]
-[ext_resource path="res://Environment/Bridge.png" type="Texture" id=2]
-[ext_resource path="res://Flooding.gd" type="Script" id=3]
-[ext_resource path="res://Rain.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DebrisItemScenes/DebrisGraphics/venic_backdrop.jpg" type="Texture" id=2]
+[ext_resource path="res://DebrisItemScenes/DebrisGraphics/Venice_bridge.png" type="Texture" id=3]
+[ext_resource path="res://Flooding.gd" type="Script" id=4]
 [ext_resource path="res://Water.tscn" type="PackedScene" id=5]
-[ext_resource path="res://DebrisItemScenes/PinkCar.tscn" type="PackedScene" id=6]
-[ext_resource path="res://DebrisItemScenes/RedCar.tscn" type="PackedScene" id=7]
-[ext_resource path="res://DebrisItemScenes/GreenCar.tscn" type="PackedScene" id=8]
-[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=9]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-extents = Vector2( 32, 32 )
+[ext_resource path="res://Rain.tscn" type="PackedScene" id=6]
+[ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=7]
+[ext_resource path="res://DebrisItemScenes/Dome.tscn" type="PackedScene" id=8]
+[ext_resource path="res://DebrisItemScenes/Door.tscn" type="PackedScene" id=9]
+[ext_resource path="res://DebrisItemScenes/Roof.tscn" type="PackedScene" id=10]
+[ext_resource path="res://DebrisItemScenes/Shield.tscn" type="PackedScene" id=11]
+[ext_resource path="res://DebrisItemScenes/Table.tscn" type="PackedScene" id=12]
+[ext_resource path="res://DebrisItemScenes/RoofTri.tscn" type="PackedScene" id=13]
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 507.739, 419.219 )
+
+[node name="venic_backdrop" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 11.5939, -42.0939 )
+z_index = -100
+texture = ExtResource( 2 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2( 522.021, 582.329 )
 scale = Vector2( 24, 0.75 )
 z_index = 2
 
-[node name="Bridge" type="Sprite" parent="Ground"]
-position = Vector2( -0.413387, -97.5168 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+polygon = PoolVector2Array( -18.7932, 20.5132, -12.5015, -124.594, -4.96267, -171.754, 3.14294, -169.94, 11.1919, -115.525, 17.3703, 33.2102, 21.4514, 38.6518, 21.3381, -68.365, 6.37386, -204.403, -8.36362, -208.031, -21.684, -91.945, -22.4209, 49.5349 )
+
+[node name="Venice_bridge" type="Sprite" parent="Ground"]
+position = Vector2( -0.818007, -77.387 )
 scale = Vector2( 0.0416667, 1.33333 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-shape = SubResource( 1 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Ground/CollisionShape2D"]
-color = Color( 0.1875, 0.1875, 0.1875, 1 )
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+z_index = 10
+texture = ExtResource( 3 )
 
 [node name="Flooding" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = 1
-script = ExtResource( 3 )
-
-[node name="Rain" parent="Flooding" instance=ExtResource( 4 )]
+script = ExtResource( 4 )
 
 [node name="Water" parent="Flooding" instance=ExtResource( 5 )]
 
@@ -58,76 +64,95 @@ position = Vector2( 566.194, -262.22 )
 [node name="LeftSpawn" parent="Flooding/Water" index="8"]
 position = Vector2( -579.555, -260.55 )
 
-[node name="InitialDebris" type="Node2D" parent="."]
+[node name="Rain" parent="Flooding/Water" instance=ExtResource( 6 )]
+position = Vector2( -512, -848 )
 
-[node name="PinkCar" parent="InitialDebris" instance=ExtResource( 6 )]
-position = Vector2( 624.65, 344.059 )
+[node name="NPC" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="RedCar" parent="InitialDebris" instance=ExtResource( 7 )]
-position = Vector2( 880.628, 341.824 )
+[node name="NPC2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="GreenCar" parent="InitialDebris" instance=ExtResource( 8 )]
-position = Vector2( 319.445, 351.845 )
+[node name="NPC3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="RedCar2" parent="InitialDebris" instance=ExtResource( 7 )]
-position = Vector2( 112.342, 346.835 )
+[node name="NPC4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC3" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC4" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC5" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC9" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC6" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC10" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC7" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC11" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC8" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC12" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC9" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC13" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC10" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC14" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC11" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC15" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC12" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC16" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC13" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC17" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC14" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC18" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC15" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="NPC19" parent="." instance=ExtResource( 7 )]
+position = Vector2( 512.054, 380.412 )
 
-[node name="NPC16" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="DraggableBlock" parent="." instance=ExtResource( 8 )]
+position = Vector2( 382.474, 298.965 )
 
-[node name="NPC17" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="DraggableBlock" parent="DraggableBlock" instance=ExtResource( 9 )]
+position = Vector2( 199.173, -21.5679 )
 
-[node name="NPC18" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="DraggableBlock2" parent="DraggableBlock" instance=ExtResource( 8 )]
+position = Vector2( 377.884, 38.5591 )
 
-[node name="NPC19" parent="." instance=ExtResource( 9 )]
-position = Vector2( 507.973, 232.13 )
+[node name="DraggableBlock3" parent="DraggableBlock" instance=ExtResource( 10 )]
+position = Vector2( -233.407, -18.2275 )
+
+[node name="DraggableBlock4" parent="DraggableBlock" instance=ExtResource( 11 )]
+position = Vector2( -14.6119, -203.619 )
+
+[node name="DraggableBlock5" parent="DraggableBlock" instance=ExtResource( 12 )]
+position = Vector2( 219.215, -145.162 )
+
+[node name="DraggableBlock6" parent="DraggableBlock" instance=ExtResource( 10 )]
+position = Vector2( 593.339, 0.144592 )
+
+[node name="DraggableBlock7" parent="DraggableBlock" instance=ExtResource( 9 )]
+position = Vector2( 269.321, -345.586 )
+
+[node name="DraggableBlock8" parent="DraggableBlock" instance=ExtResource( 13 )]
+position = Vector2( -210.025, -211.97 )
+
+[node name="DraggableBlock9" parent="DraggableBlock" instance=ExtResource( 13 )]
+position = Vector2( 127.355, -429.095 )
 
 
 [editable path="Flooding/Water"]
