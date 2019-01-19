@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/italian_flood.ogg-3f0c4d046855ae362944043753514ac0.oggstr"
+
+[deps]
+
+source_file="res://Scenes/italian_flood.ogg"
+dest_files=[ "res://.import/italian_flood.ogg-3f0c4d046855ae362944043753514ac0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
