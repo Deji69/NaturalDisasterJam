@@ -15,12 +15,15 @@ func _ready():
 
 func _physics_process(delta):
 	if $RayCast2DWater.is_colliding(): # Uh, wet!
+		$Sprite.play("drown")
 		swim_time_left -= delta
 		velocity.x *= pow(0.4, delta)
 		if swim_time_left > 0:
 			velocity.y -= swim_acceleration * delta
 		elif swim_time_left < -1:
 			queue_free()
+	else:
+		$Sprite.play("default")
 	
 	if $RayCast2D.is_colliding(): # Can feel terrain, yay
 		var direction = sign((randi() % 2 - 0.5) * randomness - $RayCast2D.get_collision_normal().x)
