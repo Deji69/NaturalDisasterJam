@@ -9,8 +9,10 @@ mass = 10.0
 density = 2.0
 
 [node name="Sprite" parent="." index="1"]
+scale = Vector2( 0.414476, 0.414476 )
 texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+scale = Vector2( 0.415957, 0.415957 )
 polygon = PoolVector2Array( 77.8013, -3.14911, 88.2514, -119.999, -97.9491, -121.899, -90.3491, -4.09912, -52.349, 86.1511, -3.89886, 129.851, 55.9513, 69.0511 )
 

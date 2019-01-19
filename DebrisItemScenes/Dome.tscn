@@ -16,19 +16,23 @@ mass = 30.0
 density = 5.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
+scale = Vector2( 1.7393, 1.7393 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-position = Vector2( -0.440125, 58.0969 )
+position = Vector2( -0.782279, 103.262 )
+scale = Vector2( 1.7774, 1.7774 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="2"]
-position = Vector2( -25.9675, -10.5631 )
+position = Vector2( -46.1547, -18.7749 )
 rotation = -1.1559
+scale = Vector2( 1.7774, 1.7774 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="3"]
-position = Vector2( 24.2071, -1.32039 )
+position = Vector2( 43.0257, -2.34686 )
 rotation = 1.06667
+scale = Vector2( 1.7774, 1.7774 )
 shape = SubResource( 2 )
 

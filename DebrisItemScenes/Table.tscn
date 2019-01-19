@@ -14,18 +14,22 @@ extents = Vector2( 87.5126, 10 )
 [node name="DraggableBlock" index="0" instance=ExtResource( 1 )]
 density = 0.3
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="0"]
-position = Vector2( -84.3423, -0.773804 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="1"]
-position = Vector2( 78.9259, 0 )
-shape = SubResource( 1 )
-
-[node name="CollisionShape2D" parent="." index="2"]
-position = Vector2( -6.96405, -40.2367 )
-shape = SubResource( 2 )
-
-[node name="Sprite" parent="." index="3"]
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.560236, 0.560236 )
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1"]
+position = Vector2( -49.4459, -0.453645 )
+scale = Vector2( 0.586253, 0.586253 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="2"]
+position = Vector2( 46.2705, 0 )
+scale = Vector2( 0.586253, 0.586253 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( -4.08269, -23.5889 )
+scale = Vector2( 0.586253, 0.586253 )
+shape = SubResource( 2 )
 

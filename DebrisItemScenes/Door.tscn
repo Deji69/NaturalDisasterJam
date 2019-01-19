@@ -11,8 +11,10 @@ extents = Vector2( 21.0011, 93.9992 )
 density = 0.7
 
 [node name="CollisionShape2D" parent="." index="0"]
+scale = Vector2( 0.62942, 0.62942 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
+scale = Vector2( 0.565034, 0.565034 )
 texture = ExtResource( 2 )
 
