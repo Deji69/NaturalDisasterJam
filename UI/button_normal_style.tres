@@ -1,13 +1,10 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=2]
 
-[sub_resource type="StreamTexture" id=1]
-
-flags = 4
-load_path = "res://.import/9patch.png-51fc544349e38a19b2846de721bc304d.stex"
+[ext_resource path="res://UI/assets/9patch.png" type="Texture" id=1]
 
 [resource]
 
-texture = SubResource( 1 )
+texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 128, 128 )
 margin_left = 42.0
 margin_right = 40.5

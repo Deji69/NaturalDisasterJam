@@ -1,7 +1,7 @@
 extends Node2D
 
 var acceleration = 1000
-var swim_acceleration = 198
+var swim_acceleration = 100
 var max_speed = 100
 var climb_speed = 50
 var step_size = 5
