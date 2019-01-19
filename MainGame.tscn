@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/MainGame.gd" type="Script" id=1]
 [ext_resource path="res://DebrisItemScenes/DebrisGraphics/venic_backdrop.jpg" type="Texture" id=2]
@@ -10,9 +10,6 @@
 [ext_resource path="res://DebrisItemScenes/Dome.tscn" type="PackedScene" id=8]
 [ext_resource path="res://DebrisItemScenes/Door.tscn" type="PackedScene" id=9]
 [ext_resource path="res://DebrisItemScenes/Roof.tscn" type="PackedScene" id=10]
-[ext_resource path="res://DebrisItemScenes/Shield.tscn" type="PackedScene" id=11]
-[ext_resource path="res://DebrisItemScenes/Table.tscn" type="PackedScene" id=12]
-[ext_resource path="res://DebrisItemScenes/RoofTri.tscn" type="PackedScene" id=13]
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
@@ -128,7 +125,7 @@ position = Vector2( 512.054, 380.412 )
 position = Vector2( 382.474, 298.965 )
 
 [node name="DraggableBlock" parent="DraggableBlock" instance=ExtResource( 9 )]
-position = Vector2( 199.173, -21.5679 )
+position = Vector2( -116.533, -80.8965 )
 
 [node name="DraggableBlock2" parent="DraggableBlock" instance=ExtResource( 8 )]
 position = Vector2( 377.884, 38.5591 )
@@ -136,23 +133,8 @@ position = Vector2( 377.884, 38.5591 )
 [node name="DraggableBlock3" parent="DraggableBlock" instance=ExtResource( 10 )]
 position = Vector2( -233.407, -18.2275 )
 
-[node name="DraggableBlock4" parent="DraggableBlock" instance=ExtResource( 11 )]
-position = Vector2( -14.6119, -203.619 )
-
-[node name="DraggableBlock5" parent="DraggableBlock" instance=ExtResource( 12 )]
-position = Vector2( 219.215, -145.162 )
-
 [node name="DraggableBlock6" parent="DraggableBlock" instance=ExtResource( 10 )]
 position = Vector2( 593.339, 0.144592 )
-
-[node name="DraggableBlock7" parent="DraggableBlock" instance=ExtResource( 9 )]
-position = Vector2( 269.321, -345.586 )
-
-[node name="DraggableBlock8" parent="DraggableBlock" instance=ExtResource( 13 )]
-position = Vector2( -210.025, -211.97 )
-
-[node name="DraggableBlock9" parent="DraggableBlock" instance=ExtResource( 13 )]
-position = Vector2( 127.355, -429.095 )
 
 
 [editable path="Flooding/Water"]
