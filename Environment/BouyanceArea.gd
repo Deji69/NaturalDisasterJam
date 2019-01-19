@@ -7,7 +7,6 @@ export(float) var max_acceleration = -5
 func _ready():
 	height = shape_owner_get_shape(
 		get_shape_owners()[0], 0).extents.y
-	print(height)
 
 func _on_BouyanceArea_body_entered(body):
 	if not body is RigidBody2D:
@@ -46,7 +45,5 @@ func get_height_percentage(obj_position: Vector2):
 	var surface_position = global_position.y - height / 2.0
 	var delta = obj_position.y - surface_position
 	var norm = delta / height
-	if norm > 0.7:
-		print(norm)
 	return clamp(norm + 0.4, 0.0, 1.0)
 	

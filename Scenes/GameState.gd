@@ -21,13 +21,7 @@ var current_state = State.MAIN
 
 
 func _ready():
-	current_scene = main_menu.instance()
-	add_child(current_scene)
-	current_scene.connect(
-		"play_level",
-		self,
-		"play"
-		)
+	on_back()
 
 
 func play(level_index):
@@ -48,6 +42,19 @@ func _on_game_end(score: Dictionary):
 	remove_child(current_scene)
 	current_scene.queue_free()
 	current_scene = score_scene.instance()
-	add_child(score_scene)
-	score_scene.display_score(score)
+	add_child(current_scene)
+	current_scene.display_score(score)
+	current_scene.connect("back", self, "on_back")
 	current_state = State.SCORE
+
+
+func on_back():
+	if current_scene != null:
+		current_scene.queue_free()
+	current_scene = main_menu.instance()
+	add_child(current_scene)
+	current_scene.connect(
+		"play_level",
+		self,
+		"play"
+		)

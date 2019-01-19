@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://NPC/NPC.gd" type="Script" id=1]
 [ext_resource path="res://NPC/npc1.png" type="Texture" id=2]
@@ -24,6 +24,24 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 } ]
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends KinematicBody2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func _exit_tree():
+	get_parent().queue_free()"
+
+[sub_resource type="CircleShape2D" id=2]
+
 
 [node name="NPC" type="Node2D"]
 script = ExtResource( 1 )
@@ -57,4 +75,12 @@ enabled = true
 cast_to = Vector2( 0, -10 )
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="Area2D" type="KinematicBody2D" parent="."]
+collision_layer = 512
+collision_mask = 512
+script = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
 

@@ -55,6 +55,8 @@ position = Vector2( -1.67028, 434.79 )
 shape = SubResource( 3 )
 
 [node name="InstakillArea" type="Area2D" parent="KillArea"]
+collision_layer = 513
+collision_mask = 513
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="KillArea/InstakillArea"]
 position = Vector2( -1096.74, -605.836 )

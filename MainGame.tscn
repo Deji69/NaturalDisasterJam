@@ -29,7 +29,6 @@ z_index = -100
 texture = ExtResource( 2 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
-editor/display_folded = true
 position = Vector2( 522.021, 582.329 )
 scale = Vector2( 24, 0.75 )
 z_index = 2

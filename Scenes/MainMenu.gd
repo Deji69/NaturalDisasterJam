@@ -15,3 +15,7 @@ func _on_Quit_pressed():
 
 func _on_Play_pressed():
        emit_signal("play_level", 0)
+
+
+func _on_Credits_pressed():
+	$Control/AcceptDialog.popup()

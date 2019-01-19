@@ -19,6 +19,11 @@ config/name="Natural Disaster Jam"
 run/main_scene="res://Scenes/GameState.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [layer_names]
 
 2d_physics/layer_2="Debris"
