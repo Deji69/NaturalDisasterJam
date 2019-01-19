@@ -20,11 +20,12 @@ script = ExtResource( 1 )
 position = Vector2( 507.739, 419.219 )
 
 [node name="venic_backdrop" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 11.5939, -42.0939 )
+position = Vector2( 4.31503, -50.8656 )
 z_index = -100
 texture = ExtResource( 2 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
+editor/display_folded = true
 position = Vector2( 522.021, 582.329 )
 scale = Vector2( 24, 0.75 )
 z_index = 2
@@ -40,6 +41,7 @@ texture = ExtResource( 3 )
 
 [node name="Flooding" type="Node2D" parent="."]
 editor/display_folded = true
+visible = false
 z_index = 1
 script = ExtResource( 4 )
 
