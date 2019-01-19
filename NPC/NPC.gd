@@ -14,18 +14,20 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
+	var drowning = false
 	if $RayCast2DWater.is_colliding(): # Uh, wet!
 		$Sprite.play("drown")
+		drowning = true
 		swim_time_left -= delta
 		velocity.x *= pow(0.4, delta)
 		if swim_time_left > 0:
 			velocity.y -= swim_acceleration * delta
 		elif swim_time_left < -1:
 			queue_free()
-	else:
-		$Sprite.play("default")
 	
 	if $RayCast2D.is_colliding(): # Can feel terrain, yay
+		if not drowning:
+			$Sprite.play("default")
 		var direction = sign((randi() % 2 - 0.5) * randomness - $RayCast2D.get_collision_normal().x)
 		
 		# Try to climb
@@ -51,6 +53,8 @@ func _physics_process(delta):
 			velocity.x *= pow(0.4, delta)
 			global_position.y -= climb_speed * delta
 	else: # Far off: fall
+		if not drowning:
+			$Sprite.play("fall")
 		velocity.y += ProjectSettings.get("physics/2d/default_gravity") * delta
 	
 	global_position += velocity * delta

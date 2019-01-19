@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/MainGame.gd" type="Script" id=1]
 [ext_resource path="res://DebrisItemScenes/DebrisGraphics/venic_backdrop.jpg" type="Texture" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://DebrisItemScenes/Dome.tscn" type="PackedScene" id=8]
 [ext_resource path="res://DebrisItemScenes/Door.tscn" type="PackedScene" id=9]
 [ext_resource path="res://DebrisItemScenes/Roof.tscn" type="PackedScene" id=10]
+[ext_resource path="res://UI.gd" type="Script" id=11]
+[ext_resource path="res://UI/theme.tres" type="Theme" id=12]
 
 [node name="World" type="Node"]
 script = ExtResource( 1 )
@@ -42,6 +44,7 @@ z_index = 10
 texture = ExtResource( 3 )
 
 [node name="Flooding" type="Node2D" parent="."]
+editor/display_folded = true
 z_index = 1
 z_as_relative = false
 script = ExtResource( 4 )
@@ -55,7 +58,14 @@ spawn_parent_path = NodePath("../../..")
 [node name="Polygon2D" parent="Flooding/Water" index="1"]
 z_index = 1
 
+[node name="KinematicArea" parent="Flooding/Water" index="3"]
+editor/display_folded = true
+
+[node name="KillArea" parent="Flooding/Water" index="4"]
+editor/display_folded = true
+
 [node name="BouyanceArea" parent="Flooding/Water" index="5"]
+editor/display_folded = true
 position = Vector2( 0, -193.222 )
 
 [node name="CollisionShape2D" parent="Flooding/Water/BouyanceArea" index="0"]
@@ -129,6 +139,7 @@ position = Vector2( 512.054, 380.412 )
 position = Vector2( 512.054, 380.412 )
 
 [node name="DraggableBlock" parent="." instance=ExtResource( 8 )]
+editor/display_folded = true
 position = Vector2( 382.474, 298.965 )
 
 [node name="DraggableBlock" parent="DraggableBlock" instance=ExtResource( 9 )]
@@ -142,6 +153,17 @@ position = Vector2( -233.407, -18.2275 )
 
 [node name="DraggableBlock6" parent="DraggableBlock" instance=ExtResource( 10 )]
 position = Vector2( 593.339, 0.144592 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
+
+[node name="Score" type="Label" parent="UI"]
+margin_left = 32.0
+margin_top = 544.0
+margin_right = 142.0
+margin_bottom = 582.0
+theme = ExtResource( 12 )
+text = "Score: 0"
 
 
 [editable path="Flooding/Water"]
