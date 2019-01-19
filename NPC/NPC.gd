@@ -23,10 +23,15 @@ func _physics_process(delta):
 		if swim_time_left > 0:
 			velocity.y -= swim_acceleration * delta
 		elif swim_time_left < -1:
+			get_parent().num_npcs -= 1
 			queue_free()
 	
 	if $RayCast2D.is_colliding(): # Can feel terrain, yay
 		if not drowning:
+			if swim_time_left < 5:
+				swim_time_left += 1 * (delta / 1000)
+			else:
+				swim_time_left = 5
 			$Sprite.play("default")
 		var direction = sign((randi() % 2 - 0.5) * randomness - $RayCast2D.get_collision_normal().x)
 		

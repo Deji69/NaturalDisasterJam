@@ -159,11 +159,19 @@ script = ExtResource( 11 )
 
 [node name="Score" type="Label" parent="UI"]
 margin_left = 32.0
-margin_top = 544.0
+margin_top = 523.146
 margin_right = 142.0
-margin_bottom = 582.0
+margin_bottom = 561.146
 theme = ExtResource( 12 )
 text = "Score: 0"
+
+[node name="Survivors" type="Label" parent="UI"]
+margin_left = 32.0
+margin_top = 480.0
+margin_right = 193.0
+margin_bottom = 518.0
+theme = ExtResource( 12 )
+text = "Survivors: 0"
 
 
 [editable path="Flooding/Water"]
